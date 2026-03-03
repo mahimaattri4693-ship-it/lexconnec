@@ -29,14 +29,14 @@ export function useLogin() {
         method: api.auth.login.method,
         body: JSON.stringify(data),
       });
-      
+
       if (!res.ok) {
         if (res.status === 401) throw new Error("Invalid credentials");
         throw new Error("Login failed");
       }
-      
+
       const payload = api.auth.login.responses[200].parse(await res.json());
-      localStorage.setItem('lexconnect_token', payload.token);
+      localStorage.setItem("lexconnect_token", payload.token);
       return payload;
     },
     onSuccess: (data) => {
@@ -56,17 +56,19 @@ export function useRegister() {
         method: api.auth.register.method,
         body: JSON.stringify(data),
       });
-      
+
       if (!res.ok) {
         if (res.status === 400) {
-          const error = api.auth.register.responses[400].parse(await res.json());
+          const error = api.auth.register.responses[400].parse(
+            await res.json(),
+          );
           throw new Error(error.message);
         }
         throw new Error("Registration failed");
       }
-      
+
       const payload = api.auth.register.responses[201].parse(await res.json());
-      localStorage.setItem('lexconnect_token', payload.token);
+      localStorage.setItem("lexconnect_token", payload.token);
       return payload;
     },
     onSuccess: (data) => {
@@ -85,7 +87,7 @@ export function useUpdateProfile() {
         method: api.auth.updateProfile.method,
         body: JSON.stringify(updates),
       });
-      
+
       if (!res.ok) throw new Error("Failed to update profile");
       return api.auth.updateProfile.responses[200].parse(await res.json());
     },
@@ -100,7 +102,7 @@ export function useLogout() {
   const [, setLocation] = useLocation();
 
   return () => {
-    localStorage.removeItem('lexconnect_token');
+    localStorage.removeItem("lexconnect_token");
     queryClient.setQueryData([api.auth.me.path], null);
     queryClient.clear();
     setLocation("/login");
