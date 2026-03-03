@@ -39,20 +39,32 @@
     --ring: 43 74% 50%;            /* Gold focus ring */
 
     --radius: 0.75rem;
+
+    /* Mobile optimization: Prevent content jumping and handle safe areas */
+    --vh: 1vh;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: transparent; /* Remove mobile tap highlight */
   }
   body {
     @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary-foreground;
     font-family: var(--font-sans);
+    min-height: calc(var(--vh, 1vh) * 100);
+    overflow-x: hidden;
+    touch-action: manipulation; /* Faster mobile taps */
   }
   h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
     font-family: var(--font-display);
   }
+  
+  /* Mobile-first text sizing */
+  h1 { @apply text-3xl md:text-5xl font-bold; }
+  h2 { @apply text-2xl md:text-3xl font-semibold; }
 }
 
 @layer utilities {

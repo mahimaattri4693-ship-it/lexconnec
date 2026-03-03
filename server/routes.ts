@@ -28,10 +28,72 @@ const authenticate = async (req: any, res: any, next: any) => {
   }
 };
 
+async function seedLawyers() {
+  const lawyers = [
+    {
+      name: "Adv. Rajesh Kumar",
+      email: "rajesh.legal@example.com",
+      phone: "9876543210",
+      password: await bcrypt.hash("lawyer123", 10),
+      role: "lawyer",
+      barCouncilId: "BCI/12345/2010",
+      specialization: "Property Law",
+      experience: 15,
+      fee: 1500,
+      about: "Expert in property verification, documentation, and dispute resolution with over 15 years of experience in high court matters."
+    },
+    {
+      name: "Adv. Priya Sharma",
+      email: "priya.family@example.com",
+      phone: "9876543211",
+      password: await bcrypt.hash("lawyer123", 10),
+      role: "lawyer",
+      barCouncilId: "BCI/67890/2015",
+      specialization: "Family Law",
+      experience: 8,
+      fee: 1000,
+      about: "Specializes in helping families resolve disputes peacefully. Expert in marriage, divorce, and child custody matters."
+    },
+    {
+      name: "Adv. Amit Verma",
+      email: "amit.cyber@example.com",
+      phone: "9876543212",
+      password: await bcrypt.hash("lawyer123", 10),
+      role: "lawyer",
+      barCouncilId: "BCI/11223/2018",
+      specialization: "Cyber Crime",
+      experience: 5,
+      fee: 1200,
+      about: "Focuses on digital safety, online fraud, and data protection. Helps victims of online scams recover their dignity and funds."
+    },
+    {
+      name: "Adv. Sunita Devi",
+      email: "sunita.rights@example.com",
+      phone: "9876543213",
+      password: await bcrypt.hash("lawyer123", 10),
+      role: "lawyer",
+      barCouncilId: "BCI/44556/2012",
+      specialization: "Women Protection",
+      experience: 12,
+      fee: 800,
+      about: "Dedicated to protecting women's rights. Provides supportive and strong legal representation for domestic and workplace issues."
+    }
+  ];
+
+  for (const lawyer of lawyers) {
+    const existing = await storage.getUserByEmail(lawyer.email);
+    if (!existing) {
+      await storage.createUser(lawyer);
+    }
+  }
+}
+
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  // Seed initial lawyers
+  seedLawyers().catch(console.error);
 
   // Auth routes
   app.post(api.auth.register.path, async (req, res) => {
