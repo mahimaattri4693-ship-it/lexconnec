@@ -1,0 +1,139 @@
+Create a full-stack mobile-first web application named LexConnect using:
+
+Frontend: React (Vite)
+Backend: Node.js + Express
+Database: MongoDB
+Authentication: JWT
+
+------------------------------------
+CORE PURPOSE
+------------------------------------
+LexConnect is a legal-tech platform that connects users with lawyers and explains ALL laws in very simple, friendly, easy-to-understand language.
+
+The platform must make legal knowledge accessible to common people who do not understand technical legal vocabulary.
+
+------------------------------------
+VERY IMPORTANT LANGUAGE RULE
+------------------------------------
+
+All legal explanations across the entire application must:
+
+- Use very simple everyday language
+- Avoid heavy legal jargon
+- Avoid complicated section numbers unless necessary
+- Explain complex concepts in small sentences
+- Provide step-by-step guidance
+- Mention what documents are needed
+- Suggest what the user should do next
+- Sound calm, respectful and supportive
+- Feel like a helpful friend explaining law
+
+For example:
+
+Instead of:
+"You may initiate proceedings under Section 420 IPC."
+
+Use:
+"If someone cheated you in money matters, this situation may be considered cheating. You can file a complaint at your nearest police station."
+
+This rule applies to:
+- Legal Advice section
+- Know Your Rights
+- AI Assistant responses
+- Case guidance text
+- Complaint help instructions
+
+------------------------------------
+AUTHENTICATION
+------------------------------------
+
+Register:
+- Full Name
+- Email
+- Phone
+- Password
+- Role selection (User / Lawyer)
+
+Login:
+- Email
+- Password
+
+After login:
+- Redirect based on role
+- Show dynamic greeting:
+   "Hello, {User Name}" or
+   "Welcome, {Lawyer Name}"
+- Do NOT hardcode names
+
+------------------------------------
+USER FEATURES
+------------------------------------
+
+Dashboard:
+- Legal Advice
+- Book a Lawyer
+- File Complaint
+- AI Legal Assistant
+- Know Your Rights
+
+Legal Advice Categories:
+- Cyber Crime
+- Family Law
+- Property Law
+- Consumer Rights
+- Women Protection
+
+Each category must contain simple, easy explanations.
+
+Find a Lawyer:
+- Filter by specialization
+- Show lawyer cards
+- Book appointment
+- Booking creates case entry
+
+My Cases:
+- Show case list
+- Status: Pending / In Progress / Resolved
+
+------------------------------------
+LAWYER FEATURES
+------------------------------------
+
+Lawyer Dashboard:
+- View assigned cases
+- Update case status
+- Status updates sync with user dashboard
+
+Editable Lawyer Profile:
+- Bar Council ID
+- Specialization
+- Experience
+- Consultation Fee
+- About section
+
+------------------------------------
+AI ASSISTANT
+------------------------------------
+
+Create a mock AI endpoint that:
+
+- Replies in simple language
+- Gives practical advice
+- Breaks down legal issues
+- Suggests documents required
+- Guides user step-by-step
+
+------------------------------------
+TECH REQUIREMENTS
+------------------------------------
+
+- Secure password hashing (bcrypt)
+- JWT authentication
+- Protected routes
+- Clean folder structure
+- Mobile responsive UI
+- Dark navy and gold theme
+- Proper error handling
+- Dynamic database storage
+
+Generate complete working frontend and backend structure with properly written simple legal content.
